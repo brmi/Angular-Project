@@ -22,7 +22,7 @@
 /*Menu Module*/
 .menu-module {
 	position: relative;
-    top: 45%;
+    top: 35%;
     padding: 2%;
 }
 h4, h5{
@@ -36,6 +36,7 @@ h5{
 p{
 	color: black;
 }
+
 
 /*Task List*/
 #task-list{

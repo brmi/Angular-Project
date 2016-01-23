@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
 		<style>[ng-cloak] { display: none; }</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-		<script src="web-scraping/temp.js"></script>
 	</head>
 	<body ng-controller='todoController' ng-cloak>
 		<div class="expanded row">
@@ -25,10 +24,9 @@
 					<div class="dining-halls">
 						<div class="row">
 							<div class="large-6 columns">
-								<a href="" ng-click="showme=true">Covel</a>
-								  <button ng-click="showme=false">Close</button> 
-								  
 								  <div class="wrapper">
+									  	<h5><a id="covel" href="" ng-click="showme=true">Covel</a>
+									  <button ng-click="showme=false">Close</button></h5>
 								    <p id="covel-menu"ng-show="showme">Put menu stuff here!</p>
 								  </div>
 							</div>
@@ -64,4 +62,5 @@
 		<script src="js/add-item-form.js"></script>
 		<script src="js/foundation.min.js"></script>
 	</body>
+		<script src="web-scraping/scrape.js"></script>
 </html>

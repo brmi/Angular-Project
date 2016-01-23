@@ -1,7 +1,7 @@
 var request = require("request"),
     cheerio = require("cheerio"),
     url = "http://menu.ha.ucla.edu/foodpro/";
-
+var menu="";
 request(url, function(error, response, body){
 	if(!error) {
 	    var $ = cheerio.load(body);
@@ -13,9 +13,8 @@ request(url, function(error, response, body){
 
 	    //prints out Covel
 		$('.menugridcell:first-of-type ul li a, .menulocheader:first-of-type a').each(function() {
+		    	menu= menu.concat( ($(this).html()) ).concat("\n");
 		    	console.log($(this).html());
-		    	// $("#covel-menu").html("Hello World");
-
 		});
 
 	}
@@ -24,7 +23,3 @@ request(url, function(error, response, body){
 	    console.log("We've encountered an error: " + error);
 	}
     });
-
-$(document).ready(function(){
-    $('#covel-menu').html('hello worl');
-});

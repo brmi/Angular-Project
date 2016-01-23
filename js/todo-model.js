@@ -7,7 +7,7 @@
         this._items = [
             'Eat pizza',
             'Get dinner',
-            'Buy a dodge'
+            'Buy a doge'
         ];
         this._checkItems=[];
         this.getItems = function() {
@@ -51,11 +51,21 @@
             }
             return false;
         };
-        this.removeItem = function(item) {
-            var index = self._items.indexOf(item);
-            if(index >= 0) {
-                self._items.splice(index, 1);
+        this.removeItem = function() {
+            var index, index1, item=self._items[0];
+            for( i=0; i <= self._checkItems.length+1;i++){
+                if(isChecked(item)){
+                    index=self._items.indexOf(item);
+                    index1=self._checkItems.indexOf(item);
+                    if (index >= 0) {
+                        self._items.splice(index, 1);
+                        self._checkItems.splice(index, 1);
+                    }
+                    console.log(i);
+                }
+                index=0; index1=0; item=self._checkItems[0];
             }
+
         };
     };
     angular.module('todoApp')

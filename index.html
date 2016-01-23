@@ -10,7 +10,7 @@
 		<style>[ng-cloak] { display: none; }</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	</head>
-	<body ng-controller='todoController'>
+	<body ng-controller='todoController' ng-cloak>
 		<div class="expanded row">
 			<div class="large-4 columns" id="list-nav">
 				<div class="list">
@@ -33,7 +33,7 @@
 					<a class="secondary button">View</a>
 					<a class="success button">Edit</a>
 					<a class="warning button">Share</a>
-					<a class="alert button">Delete</a>
+					<a class="alert button" ng-click="removeItem()">Delete</a>
 				</div>
 			</div>
 		</div>

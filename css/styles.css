@@ -19,6 +19,24 @@
     color: white;
 }
 
+/*Menu Module*/
+.menu-module {
+	position: relative;
+    top: 45%;
+    padding: 2%;
+}
+h4, h5{
+	text-align: center;
+}
+
+h5{
+	border: 1px solid #BDBDBD;
+	padding: 1em 1em 1em 1em;
+}
+p{
+	color: black;
+}
+
 /*Task List*/
 #task-list{  padding:2%;  }
 .task span{  font-size:1.3em;  }

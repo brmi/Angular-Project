@@ -8,6 +8,9 @@
         $scope.removeItem = todoModel.removeItem;
         $scope.checkItem= todoModel.checkItem;
         $scope.isChecked=todoModel.isChecked;
+        $scope.editorClicked=todoModel.editorClicked;
+        $scope.isEdit=todoModel.isEdit;
+        $scope.editing=todoModel.editing;
     }
     angular.module('todoApp')
         .controller('todoController',

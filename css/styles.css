@@ -39,10 +39,6 @@ p{
 
 
 /*Task List*/
-#task-list{
-    padding:2%;
-}
-
-.task span{
-    font-size:1.3em;
-}
+#task-list{  padding:2%;  }
+.task span{  font-size:1.3em;  }
+.task.callout{ padding:.5em; }

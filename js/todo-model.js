@@ -3,7 +3,9 @@
  */
 (function(){
     function todoModel () {
-        var self = this;
+        var self = this
+        this.edit = false
+        this.editNum;
         this._items = [
             'Eat pizza',
             'Get dinner',
@@ -53,13 +55,14 @@
         };
         this.removeItem = function() {
             var index, index1, item=self._items[0];
-            for( i=0; i <= self._checkItems.length+1;i++){
+            var size=self._checkItems.length+1;
+            for( i=0; i <= size ;i++){
                 if(isChecked(item)){
                     index=self._items.indexOf(item);
                     index1=self._checkItems.indexOf(item);
                     if (index >= 0) {
                         self._items.splice(index, 1);
-                        self._checkItems.splice(index, 1);
+                        self._checkItems.splice(index1, 1);
                     }
                     console.log(i);
                 }
@@ -67,6 +70,25 @@
             }
 
         };
+        this.editorClicked = function(){
+            if(self.edit==true){
+                self.edit=false;
+            }
+            else{
+                self.edit=true;
+            }
+        };
+        this.isEdit= function(item){
+            return self.edit && isChecked(item);
+        };
+        this.editing= function(oldItem, newItem){
+            var index=self._items.indexOf(oldItem);
+            self._items[index]=newItem;
+            self._checkItems.splice(self._checkItems.indexOf(oldItem), 1);
+            self.edit=false;
+            console.log(self._checkItems);
+            console.log(self._items);
+        }
     };
     angular.module('todoApp')
         .service('todoModel', todoModel);

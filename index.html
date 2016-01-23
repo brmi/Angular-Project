@@ -26,12 +26,18 @@
 					<span class="large"><i class="fi-calendar"></i></span>
 				</div>
 				<div class="callout task" ng-repeat="item in getItems()">
-					<input id="checkbox1" type="checkbox" ng-click="checkItem(item)">
-					<span>{{item}}</span>
+					<input id="checkbox1" type="checkbox" ng-click="checkItem(item)" class="large-1">
+					<span ng-show="isEdit(item) ">
+						<form class="large-8 columns">
+							<input type='text' ng-model='editor' placeholder="{{item}}" name='newItem' id='newItem' />
+							<input ng-click='editing(item,editor)' type='submit' style="display:none;" />
+						</form>
+					</span>
+					<span ng-hide="isEdit(item)">{{item}}</span>
 				</div>
 				<div class="button-group" ng-show="isChecked()">
 					<a class="secondary button">View</a>
-					<a class="success button">Edit</a>
+					<a class="success button" ng-click="editorClicked(item)">Edit</a>
 					<a class="warning button">Share</a>
 					<a class="alert button" ng-click="removeItem()">Delete</a>
 				</div>

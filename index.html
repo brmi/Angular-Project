@@ -20,19 +20,36 @@
 					<h3>Title of a List</h3>
 				</div>
 				<div class="menu-module">
-					<h4>Today's Menu</h4>
+					<h4><a id="menu-title" href="" ng-click="showme=true">Today's Menu</a>
+						<button ng-click="showme=false">Close</button></h5>
+					</h4>
 					<div class="dining-halls">
 						<div class="row">
 							<div class="large-6 columns">
 								  <div class="wrapper">
-									  	<h5><a id="covel" href="" ng-click="showme=true">Covel</a>
-									  <button ng-click="showme=false">Close</button></h5>
-								    <p id="covel-menu"ng-show="showme">Put menu stuff here!</p>
+								  	<h3 ng-show="showme">Covel</h3>
+								  		<!-- <h6 ng-show="showme"> Breakfast </h6> -->
+								    		<p id="covel" ng-show="showme">No data yet!</p>
 								  </div>
 							</div>
-							<div class="large-6 columns"><h5>De Neve</h5></div>
-							<div class="large-6 columns"><h5>Feast</h5></div>
-							<div class="large-6 columns"><h5>Bruin Plate</h5></div>
+							<div class="large-6 columns">
+								<div class="wrapper">
+									<h3 ng-show="showme">De Neve</h3>
+									<p id="deneve" ng-show="showme">No data yet!</p>
+								</div>
+							</div>
+							<div class="large-6 columns">
+								<div class="wrapper">
+									<h3 ng-show="showme">Feast</h3>
+									<p id="feast" ng-show="showme">No data yet!</p>
+								</div>
+							</div>
+							<div class="large-6 columns">
+								<div class="wrapper">
+									<h3 ng-show="showme">B-Plate</h3>
+									<p id="bplate" ng-show="showme">No data yet!</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -67,6 +84,6 @@
 		<script src="js/todo-model.js"></script>
 		<script src="js/add-item-form.js"></script>
 		<script src="js/foundation.min.js"></script>
-	</body>
 		<script src="web-scraping/scrape.js"></script>
+	</body>
 </html>

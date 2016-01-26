@@ -1,23 +1,117 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var request = require("request"),
     cheerio = require("cheerio"),
-    url = "http://menu.ha.ucla.edu/foodpro/";
-var menu="";
+    url = "https://crossorigin.me/http://menu.ha.ucla.edu/foodpro/";
+
+var d = new Date(); 
+var isWeekend = (d.getDay() + 1) % 7 == 0;
+var hour = d.getHours();
+var weekdaybreakfast;
+
+if (isWeekend && (hour <= 14) && (hour >= 9)){
+	document.getElementById("menu-title").innerHTML = "Weekend Brunch";
+}else if (isWeekend && (hour <= 21) && (hour >= 17)){
+	document.getElementById("menu-title").innerHTML = "Weekend Dinner";
+}else if (!isWeekend && (hour <= 11) && (hour >= 7)){
+	weekdaybreakfast=true;
+	document.getElementById("menu-title").innerHTML = "Breakfast";
+}else if (!isWeekend && (hour <= 14) && (hour >= 11)){
+	document.getElementById("menu-title").innerHTML = "Lunch";
+}else if (!isWeekend && (hour <= 21) && (hour >= 17)){
+	document.getElementById("menu-title").innerHTML = "Dinner";
+}else{
+	document.getElementById("menu-title").innerHTML = "No Dining Halls Open :(";
+}
+
 request(url, function(error, response, body){
 	if(!error) {
 	    var $ = cheerio.load(body);
-	    var covel = [];
-	    var deneve=[];
-	    var feast = [];
-	    var bplate = [];
-	    var count = 0;
+	    var covelmenu_breakfast="";
+	    var covelmenu="";
+	    var denevemenu = "";
+	    var denevemenu_breakfast="";
+	    var feastmenu = "";
+	    var bplatemenu = "";
+	    var bplatemenu_breakfast="";
 
-	    //prints out Covel
-		$('.menugridcell:first-of-type ul li a, .menulocheader:first-of-type a').each(function() {
-		    	menu= menu.concat( ($(this).html()) ).concat("\n");
-		    	console.log($(this).html());
-		});
 
+	    //weekday breakfast only deneve and bplate
+	    if(!weekdaybreakfast)
+	    {
+	    	$('.menugridcell ul li a, .divider_menu').each(function() 
+	    	{
+				if($(this).attr('class') == "divider_menu")
+				{
+					$('.menugridcell_last ul li a, .divider_menu').each(function()
+					{
+						if($(this).attr('class') == "divider_menu")
+						{
+							return false;
+						}
+						bplatemenu_breakfast = bplatemenu_breakfast.concat( ($(this).text()) + "\n" );
+					});
+					return false;
+				}
+				denevemenu_breakfast=denevemenu_breakfast.concat( ($(this).text()) + "\n" );
+			});
+	    }
+
+	    document.getElementById("deneve").innerHTML = denevemenu_breakfast;
+	    document.getElementById("bplate").innerHTML = bplatemenu_breakfast;
+	    
+	    //prints out Covel breakfast
+		// $('.menugridcell:first-of-type ul li a, .menusplit').each(function() {
+		// 	if($(this).attr('class') == "menusplit"){
+		// 		return false;
+		// 	}
+		//     	covelmenu_breakfast= covelmenu_breakfast.concat( ($(this).html()) + "\n" );
+		// });
+	
+		// $('.menugridcell ul li a, .menusplit, .divider-menu').each(function() {
+		// 	if($(this).attr('class') == "menusplit" || $(this).attr('class') == "divider-menu"){
+		// 		return false;
+		// 	}
+		//     	covelmenu_breakfast= covelmenu_breakfast.concat( ($(this).text()) + "\n" );
+		// });
+
+		
+		// document.getElementById("covel-menu-breakfast").innerHTML = covelmenu;
+
+		 //prints out De Neve
+		// $('.menugridcell_last ul li a, .menusplit').each(function() {
+		// 	if($(this).attr('class') == "menusplit"){
+		// 		return false;
+		// 	}
+		// 		console.log($(this).text());
+		//     	denevemenu= denevemenu.concat( ($(this).text()) + "\n");
+		// });
+				
+		// document.getElementById("deneve-menu").innerHTML = denevemenu;
+
+		//prints out Feast
+		// $('.menugridcell:first-of-type ul li a, .menusplit').each(function() {
+		// 	var afterbreak = false;
+
+		// 	if($(this).attr('class') == "menusplit"){
+		// 		afterbreak = true;
+		// 	}
+
+		// 	if(afterbreak){
+		// 		feastmenu= feastmenu.concat( ($(this).html()) );
+		// 	}
+		// });
+
+		document.getElementById("feast-menu").innerHTML = feastmenu;
+
+		//prints out Bplate
+		// $('.menugridcell:first-of-type ul li a, .menulocheader:first-of-type a').each(function() {
+		// 	if($(this).html() == "FEAST at Rieber"){
+		// 		return false;
+		// 	}
+		//     	bplatemenu= bplatemenu.concat( ($(this).html()) );
+		// });
+
+		// document.getElementById("bplate-menu").innerHTML = bplatemenu;
 	}
 
 	else{

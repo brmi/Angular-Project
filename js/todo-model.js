@@ -3,21 +3,33 @@
  */
 (function(){
     function todoModel () {
-        var self = this
-        this.edit = false
-        this.editNum;
+        var self = this;
+        this.mode;
         this._items = [
-            'Eat pizza',
-            'Get dinner',
-            'Buy a doge'
+            {
+                title:'Eat pizza',
+                description:'Cheese pizza is the best! but...I do not know if everybody likes it'
+            },
+            {
+                title:'Get dinner',
+                description:''
+            },
+            {
+                title: 'Buy a doge',
+                description:''
+            }
         ];
         this._checkItems=[];
         this.getItems = function() {
             return self._items;
         };
         this.addItem = function(item) {
-            if(!item) { return; };
-            self._items.push(item);
+            if(!item) { return; }
+            var object={
+                title:item,
+                description:''
+            }
+            self._items.push(object);
         };
         this.checkItem = function(item){
             if(isChecked(item)!=true){
@@ -37,6 +49,7 @@
                 return true;
             }
         };
+        //Checks if there are any checked items in the list
         this.isChecked=function(){
             if(self._checkItems.length==0){
                 return false;
@@ -45,6 +58,7 @@
                 return true;
             }
         };
+        //Checks if a certain item is checked
         function isChecked(item){
             for(var i = 0; i<self._checkItems.length;i++){
                 if(self._checkItems[i]==item){
@@ -68,26 +82,35 @@
                 }
                 index=0; index1=0; item=self._checkItems[0];
             }
-
-        };
-        this.editorClicked = function(){
-            if(self.edit==true){
-                self.edit=false;
-            }
-            else{
-                self.edit=true;
-            }
         };
         this.isEdit= function(item){
-            return self.edit && isChecked(item);
+            return this.isSelected(2) && isChecked(item);
         };
-        this.editing= function(oldItem, newItem){
-            var index=self._items.indexOf(oldItem);
-            self._items[index]=newItem;
+        this.editing= function(oldItem, newItem, field){
+            var index = self._items.indexOf(oldItem);
+            console.log(self._items[index].title);
+            if(field=='title'){
+                self._items[index].title = newItem;
+                console.log(self._items[index].title);
+            }
+           else if(field=='description'){
+                self._items[index].description = newItem;
+            }
             self._checkItems.splice(self._checkItems.indexOf(oldItem), 1);
-            self.edit=false;
+            self.mode = 0;
             console.log(self._checkItems);
             console.log(self._items);
+        };
+        this.isClicked=function(mode) {
+            if(self.mode==mode){
+                self.mode=0;
+                //alert('hi');
+            }else{
+                self.mode=mode;
+            }
+        };
+        this.isSelected=function(mode){
+            return mode == self.mode;
         }
     };
     angular.module('todoApp')

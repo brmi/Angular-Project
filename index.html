@@ -48,16 +48,19 @@
 					<input id="checkbox1" type="checkbox" ng-click="checkItem(item)" class="large-1">
 					<span ng-show="isEdit(item) ">
 						<form class="large-8 columns">
-							<input type='text' ng-model='editor' placeholder="{{item}}" name='newItem' id='newItem' />
-							<input ng-click='editing(item,editor)' type='submit' style="display:none;" />
+							<input type='text' ng-model='editor' placeholder="{{item.title}}" name='newItem' id='newItem' />
+							<input ng-click='editing(item,editor,"title")' type='submit' style="display:none;" />
 						</form>
 					</span>
-					<span ng-hide="isEdit(item)">{{item}}</span>
+					<span ng-hide="isEdit(item)">{{item.title}}</span>
+					<div class="large-8 large-offset-1" ng-show="isSelected(1)">
+						{{item.description}}
+					</div>
 				</div>
 				<div class="button-group" ng-show="isChecked()">
-					<a class="secondary button">View</a>
-					<a class="success button" ng-click="editorClicked(item)">Edit</a>
-					<a class="warning button">Share</a>
+					<a class="secondary button" ng-click="isClicked(1)">View</a>
+					<a class="success button" ng-click="isClicked(2)">Edit</a>
+					<a class="warning button" ng-click="isClicked(3)">Share</a>
 					<a class="alert button" ng-click="removeItem()">Delete</a>
 				</div>
 			</div>

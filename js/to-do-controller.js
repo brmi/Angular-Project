@@ -8,7 +8,8 @@
         $scope.removeItem = todoModel.removeItem;
         $scope.checkItem= todoModel.checkItem;
         $scope.isChecked=todoModel.isChecked;
-        $scope.editorClicked=todoModel.editorClicked;
+        $scope.isClicked=todoModel.isClicked;
+        $scope.isSelected=todoModel.isSelected;
         $scope.isEdit=todoModel.isEdit;
         $scope.editing=todoModel.editing;
     }

@@ -16,3 +16,22 @@
         .controller('todoController',
             ['$scope', 'todoModel',  todoController]);
 })();
+
+(function() {
+    function addTodoList($scope, todoModel) {
+        $scope.name = 'Item';
+
+        $scope.todoLists = [
+            {text: 'Work', done:false},
+            {text: 'Social', done:false}
+        ];
+
+        $scope.addList = function() {
+            $scope.todoLists.push({text:$scope.formAddTodoList, done:false});
+            $scope.formAddTodoList = '';
+        }
+    }
+    angular.module('todoApp')
+        .controller('addTodoList',
+            ['$scope', 'todoModel',  addTodoList]);
+})();

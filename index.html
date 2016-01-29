@@ -10,38 +10,22 @@
 		<style>[ng-cloak] { display: none; }</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	</head>
-	<body ng-controller='todoController' ng-cloak>
+	<body>
 		<div class="expanded row">
-			<div class="large-4 columns" id="list-nav">
-				<div class="list">
+			<div ng-controller="addTodoList" class="large-4 columns" id="list-nav">
+				<div class="list active">
 					<h3>Home</h3>
 				</div>
-				<div class="list active">
-					<h3>Title of a List</h3>
+				<div class="list done-{{list.done}}" ng-repeat="list in todoLists" ng-cloak>
+					<h3 >{{list.text}}</h3>
 				</div>
-				<div class="menu-module">
-					<h4><a id="menu-title" href="" ng-click="showme=true">Today's Menu</a>
-						<button ng-click="showme=false">Close</button></h5>
-					</h4>
-					<div class="dining-halls">
-						<div class="row">
-							<div class="large-6 columns">
-								  <div class="wrapper">
-								  	<h3 ng-show="showme">Covel</h3>
-								    <p id="covel" ng-show="showme">No data yet!</p>
-								  </div>
-							</div>
-							<div class="large-6 columns">
-								<div class="wrapper">
-									<h3 ng-show="showme">De Neve</h3>
-									<p id="deneve" ng-show="showme">No data yet!</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
+				<form>
+					<input type="text" ng-model="formAddTodoList">
+					<a href="#" class="button round" ng-click="addList()">Add</a>
+				</form>
 			</div>
-			<div class="large-8 columns" id="task-list">
+			<div class="large-8 columns" id="task-list" ng-controller='todoController' ng-cloak>
 				<div class="row">
 					<add-item-form></add-item-form>
 					<span class="large"><i class="fi-calendar"></i></span>
@@ -72,5 +56,6 @@
 		<script src="js/add-item-form.js"></script>
 		<script src="js/foundation.min.js"></script>
 		<script src="web-scraping/scrape.js"></script>
+		<script src="js/add-todo-list.js"></script>
 	</body>
 </html>

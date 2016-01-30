@@ -16,8 +16,8 @@
 				<div class="list">
 					<h3>Home</h3>
 				</div>
-				<div class="list active">
-					<h3>Title of a List</h3>
+				<div class="list done-{{list.done}}" ng-repeat="list in todoLists" ng-cloak>
+					<h3 >{{list.text}}</h3>
 				</div>
 				<div class="menu-module callout primary">
 					<h4><a id="menu-title" href="" ng-click="showme=true">Today's Menu</a>
@@ -39,6 +39,10 @@
 							</div>
 						</div>
 					</div>
+					<form>
+						<input type="text" ng-model="formAddTodoList">
+						<a href="#" class="button round" ng-click="addList()">Add</a>
+					</form>
 				</div>
 			</div>
 			<div class="large-8 columns" id="task-list">
@@ -78,5 +82,6 @@
 		<script src="js/list-model.js"></script>
 		<script src="js/foundation.min.js"></script>
 		<script src="web-scraping/scrape.js"></script>
+		<script src="js/add-todo-list.js"></script>
 	</body>
 </html>

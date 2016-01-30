@@ -3,7 +3,6 @@
  */
 (function() {
     function todoController($scope, todoModel) {
-        $scope.name = 'Byron';
         $scope.getItems = todoModel.getItems;
         $scope.removeItem = todoModel.removeItem;
         $scope.checkItem= todoModel.checkItem;
@@ -16,4 +15,5 @@
     angular.module('todoApp')
         .controller('todoController',
             ['$scope', 'todoModel',  todoController]);
+    //todoController.$inject = ['nlp']
 })();
